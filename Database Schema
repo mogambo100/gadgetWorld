@@ -1,0 +1,67 @@
+Brand
+- brandid
+- name
+- logo
+
+Category
+-categoryid
+-name
+
+
+Product 
+-productid
+-brandid
+-categoryid
+-name
+-price
+
+
+Images
+-imageid
+-productid
+-tag
+
+
+FeaturesLookup
+-featureid
+-name
+
+FeaturesValues
+-valueid
+-featureid
+-value
+
+
+
+
+CREATE TABLE BRAND
+(
+	brandid int PRIMARY KEY AUTO INCREMENT,
+	name varchar(40) NOT NULL,
+	logo varchar(50) NOT NULL,
+)
+
+CREATE TABLE CATEGORY
+(
+	categoryid int PRIMARY KEY AUTO INCREMENT,
+	name varchar(50)
+)
+
+CREATE TABLE PRODUCT 
+(
+	productid int PRIMARY KEY AUTO INCREMENT,
+	brandid int,
+	category int,
+	name varchar(50) NOT NULL,
+	price decimal(10,2) NOT NULL,
+	FOREIGN KEY(brandid) REFERENCES BRAND(brandid)
+	FOREIGN KEY(categoryid) REFERENCES BRAND(categoryid)
+)
+
+CREATE TABLE IMAGES
+(
+	imageid int PRIMARY KEY AUTO INCREMENT,
+	productid int,
+	tag varchar(200)
+	FOREIGN KEY(productid) REFERENCES PRODUCT(productid)
+)
